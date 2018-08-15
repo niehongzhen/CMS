@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#main-wrapper{  border-bottom:1px solid #414141; background:#fff;}
+.main_top{ height:260px; width:1140px; margin:0 auto; padding-top:90px;}
+.main_top img{ display:block;float:left; width:354px;}
+.main_top dl{width:735px;float:right; border-bottom:1px solid #eeeeee; padding-bottom:30px;}
+.main_top dl dt{ font-size:16px; color:#323433;}
+.main_top dl dd{ font-size:14px; margin-top:18px;}
+
+.main_center{ height:417px; width:1140px; margin:0 auto;}
+.main_center dl{ border-bottom:1px solid #eeeeee; padding-bottom:44px;}
+.main_center dl dt{ font-size:16px; color:#323433; text-align:center; margin-bottom:24px;}
+.main_center dl dd{ width:340px; float:left; margin-right:60px;}
+.main_center dl dd p{ text-align:center; font-size:14px; color:#666666; margin-top:18px;}
+
+.main_bottom{ height:947px; width:1140px; margin:0 auto;}
+.main_bottom h2{font-size:16px; color:#323433; text-align:center; margin-bottom:24px;}
+.main_bottom ul li{ float:left;}
+.main_bottom ul li a{ display:block; width:340px; height:228px; margin-right:60px; margin-bottom:49px;}

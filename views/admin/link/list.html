@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CMS内容管理系统-友情链接列表</title>
+
+    <!--引入头部的文件-->
+    {{@ include 'admin/public/headerFile.html'}}
+</head>
+
+<body>
+<!--引入头部导航部分-->
+{{@include 'admin/public/nav_top.html'}}
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <!--引入左侧边栏-->
+        {{@include 'admin/public/sidebar.html'}}
+
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.check('breadcrumbs', 'fixed')
+                    } catch (e) {
+                    }
+                </script>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home home-icon"></i>
+                        <a href="#">首页</a>
+                    </li>
+                    <li class="active">控制台</li>
+                </ul><!-- .breadcrumb -->
+            </div>
+
+            <div class="page-content">
+
+                <div class="page-header">
+                    <h1>
+                        友情链接列表
+                    </h1>
+                </div><!-- /.page-header -->
+
+
+                <!--表格-->
+
+                <div class="table-responsive">
+                    <table id="sample-table-1" class="table table-striped table-bordered table-hover center">
+                        <thead>
+                        <tr>
+                            <th class="center">名称</th>
+                            <th class="center">所属分类</th>
+                            <th class="center">链接地址</th>
+                            <th class="center">排序</th>
+                            <th class="center">
+                                <i class="icon-time bigger-110 hidden-480"></i>
+                                添加时间
+                            </th>
+                            <th width="70px;" class="center">审核状态</th>
+                            <th width="100px;" class="center">操作</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{each list}}
+                        <tr>
+                            <td>
+                                {{$value.linkName}}
+                            </td>
+                            <td>
+                                {{$value.linkCate || ''}}
+                            </td>
+                            <td>
+                                <a href="{{$value.linkUrl}}" target="_blank">{{$value.linkUrl}}</a>
+                            </td>
+                            <td>
+                                <input type="text" value="{{$value.sort || 0}}" class="sort_input" onblur="app.changeSort(this,'link','sort','{{@$value._id}}')"/>
+                            </td>
+                            <td>
+                                {{if $value.add_time}}
+                                {{$value.add_time | dateFormat}}
+                                {{/if}}
+                            </td>
+                            <td>
+                                {{if $value.status == 1}}
+                                <img src="{{host}}/admin/images/yes.gif"  onclick="app.toggle(this,'link','status','{{@$value._id}}')" />
+                                {{else}}
+                                <img src="{{host}}/admin/images/no.gif" onclick="app.toggle(this,'link','status','{{@$value._id}}')" />
+                                {{/if}}
+                            </td>
+                            <td>
+                                <a href="{{host}}/admin/link/edit?id={{@$value._id}}">
+                                    <button class="btn btn-xs btn-info">
+                                        <i class="icon-edit bigger-120"></i>
+                                    </button>
+                                </a>
+                                &nbsp;&nbsp;
+                                <a class="delete_btn" href="{{host}}/admin/delete?collectionName=link&id={{@$value._id}}">
+                                    <button class="btn btn-xs btn-danger">
+                                        <i class="icon-trash bigger-120"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                    <div id="linkPage" class="pagination" style="margin-left:700px;"></div>
+                </div>
+            </div>
+        </div><!-- /.main-content -->
+
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<!--引入底部的相关文件-->
+{{@ include 'admin/public/footerFile.html'}}
+<script src="{{host}}/admin/js/jqPaginator.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('table th input:checkbox').on('click', function () {
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+        });
+
+        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            var w2 = $source.width();
+
+            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+            return 'left';
+        }
+
+    //    分页组件
+        $('#linkPage').jqPaginator({
+            totalPages: {{totalPages}},
+            visiblePages: 2,
+            currentPage: {{currentPage}},
+            onPageChange: function (num, type) {
+                if(type == 'change'){
+                    location.href = '{{host}}/admin/link?page=' + num;
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
+

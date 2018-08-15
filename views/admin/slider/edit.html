@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>CMS内容管理系统-轮播图编辑</title>
+
+	<!--引入头部的文件-->
+	{{@ include 'admin/public/headerFile.html'}}
+</head>
+
+<body>
+<!--引入头部导航部分-->
+{{@include 'admin/public/nav_top.html'}}
+
+<div class="main-container" id="main-container">
+	<script type="text/javascript">
+		try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	</script>
+
+	<div class="main-container-inner">
+		<a class="menu-toggler" id="menu-toggler" href="#">
+			<span class="menu-text"></span>
+		</a>
+
+		<!--引入左侧边栏-->
+		{{@include 'admin/public/sidebar.html'}}
+
+		<div class="main-content">
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+				</script>
+
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home home-icon"></i>
+						<a href="#">首页</a>
+					</li>
+					<li class="active">控制台</li>
+				</ul><!-- .breadcrumb -->
+			</div>
+
+			<div class="page-content">
+
+				<div class="page-header">
+					<h1>
+						编辑轮播图
+					</h1>
+				</div><!-- /.page-header -->
+
+				<!--表格-->
+
+                <div class="table-responsive">
+                    <form action="{{host}}/admin/slider/doEdit" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        <input type="hidden" name="_id" value="{{@list._id}}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="title">标 题:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" id="title"  name="title" class="col-xs-10 col-sm-5" value="{{list.title}}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="height:100px;">
+                            <label class="col-sm-2 control-label no-padding-right" for="pic">图 片:</label>
+
+                            <div class="col-sm-10">
+                                <input type="file" id="pic"  name="pic" class="col-xs-10 col-sm-5" />
+                            </div>
+                            <div class="col-sm-10">
+                                <img src="{{host}}/{{list.pic}}" alt="" style="width:80px;height:80px;margin:10px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="url">链接地址:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" id="url"  name="url" class="col-xs-10 col-sm-5" value="{{list.url}}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right" for="title">排序:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" id="sort"  name="sort" class="col-xs-10 col-sm-5"  value="{{list.sort}}" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right">审核状态：</label>
+                            <div class="col-sm-10">
+                                <label for="status1">已审核：</label><input type="radio" name="status"  id="status1" value="1" {{if list.status == 1}}checked{{/if}} />
+                                &nbsp;
+                                <label for="status2">未审核:</label><input type="radio" name="status" id="status2" value="0" {{if list.status == 0}}checked{{/if}}/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right"></label>
+
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+</body>
+</html>
+

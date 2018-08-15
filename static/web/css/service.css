@@ -1,0 +1,99 @@
+.banner-wrapper {
+  width: 100%;
+  height: 650px;
+  background: url("/web/images/service.jpg") center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+.banner-wrapper::before {
+  content: url("/web/images/left.png");
+  position: absolute;
+  left: 130px;
+  top: 300px;
+  width: 65px;
+  height: 65px;
+}
+.banner-wrapper::after {
+  content: url("/web/images/right.png");
+  position: absolute;
+  right: 130px;
+  top: 300px;
+  width: 65px;
+  height: 65px;
+}
+.banner-wrapper h1.title {
+  margin-top: 100px;
+  color: #fff;
+}
+.banner-wrapper .service-slider {
+  position: absolute;
+  width: 1080px;
+  top: 150px;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -540px;
+  text-align: center;
+}
+.banner-wrapper .service-slider .swiper-wrapper {
+  margin-top: 50px;
+}
+.banner-wrapper .service-slider .swiper-wrapper .swiper-slide .service_wrap_slogan_h2 {
+  margin-top: 40px;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+}
+.banner-wrapper .service-slider .swiper-wrapper .swiper-slide .service_wrap_slogan_h3 {
+  font-size: 38px;
+  color: #22eaaa;
+  text-align: center;
+}
+.banner-wrapper .service-slider .swiper-wrapper .swiper-slide .service_wrap_slogan_h4 {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 60px;
+}
+.banner-wrapper .service-slider .swiper-wrapper .swiper-slide a {
+  display: block;
+  width: 130px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  margin: 0 auto;
+  line-height: 36px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.banner-wrapper .service-slider .swiper-wrapper .swiper-slide a:hover {
+  background: #fff;
+  color: rgba(25, 169, 123, 0.95);
+}
+.banner-wrapper .service-slider .swiper-pagination {
+  top: 10px;
+  z-index: 0;
+}
+.banner-wrapper .service-slider .swiper-pagination .swiper-pagination-bullet {
+  display: inline-block;
+  width: 100px;
+  height: 34px;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 0 5px;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 0;
+  color: #fff;
+  opacity: 1;
+}
+.banner-wrapper .service-slider .swiper-pagination .swiper-pagination-bullet-active {
+  color: #666;
+  background: #fff;
+}
+/*# sourceMappingURL=service.css.map */

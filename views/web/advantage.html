@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>教育优势</title>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/heder_nav-menu.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/advantage.css"/>
+</head>
+
+<body>
+
+{{@ include 'web/public/header.html'}}
+
+<section id="main-wrapper">
+    <div class="main">
+        <h1 class="title">{{titleList.title}}</h1>
+        <div class="h1_desc h_desc">
+            {{@titleList.content}}
+        </div>
+        <div class="container advantage_container">
+            {{each advantageList}}
+            <div class="advantage_col_item">
+                <img src="{{$value.img_url}}" alt="">
+                <div class="advantage_title">
+                    {{$value.title}}
+                </div>
+                <div class="advantage_desc">
+                    {{@$value.content}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        
+        <div class="advantage_bg">
+            <img src="{{titleList.img_url}}" alt="">
+        </div>
+
+    </div>
+
+
+</section>
+
+
+{{@ include 'web/public/footer.html'}}
+
+
+</body>
+</html>

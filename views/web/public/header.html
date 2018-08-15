@@ -1,0 +1,18 @@
+<div id="header-wrapper">
+    <div class="header-inner">
+        <div class="logo">
+            <a href="#" title="百度教育">
+                <img src="{{host}}/{{site_logo}}" alt="">
+            </a>
+        </div>
+        <div class="nav">
+            <ul class="clear">
+                {{each navList}}
+                <li>
+                    <a href="{{$value.navUrl}}" {{if G.url == $value.navUrl}} class="active" {{/if}}>{{$value.navName}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

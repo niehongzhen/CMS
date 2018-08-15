@@ -1,0 +1,248 @@
+<div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <button class="btn btn-success">
+                <i class="icon-signal"></i>
+            </button>
+
+            <button class="btn btn-info">
+                <i class="icon-pencil"></i>
+            </button>
+
+            <button class="btn btn-warning">
+                <i class="icon-group"></i>
+            </button>
+
+            <button class="btn btn-danger">
+                <i class="icon-cogs"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+
+            <span class="btn btn-info"></span>
+
+            <span class="btn btn-warning"></span>
+
+            <span class="btn btn-danger"></span>
+        </div>
+    </div><!-- #sidebar-shortcuts -->
+
+    <ul class="nav nav-list">
+        <li class="active">
+            <a href="/admin">
+                <i class="icon-dashboard"></i>
+                <span class="menu-text"> 控制台 </span>
+            </a>
+        </li>
+
+
+        <li {{if G.url[1] == "manage"}} class="active open" {{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-user-md"></i>
+                <span class="menu-text"> 管理员管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if !G.url[2]}}  class='active' {{/if}}>
+                    <a href="/admin/manage">
+                        <i class="icon-double-angle-right"></i>
+                        管理员列表
+                    </a>
+                </li>
+
+                <li {{if G.url[2] == 'add'}} class='active' {{/if}}>
+                    <a href="/admin/manage/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加管理员
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+
+        <li {{if G.url[1] =="articlecate"}} class="active open" {{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-list"></i>
+                <span class="menu-text"> 分类管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if !G.url[2]}} class="active" {{/if}}>
+                    <a href="/admin/articlecate">
+                        <i class="icon-double-angle-right"></i>
+                        分类列表
+                    </a>
+                </li>
+
+                <li {{if G.url[2] == "add"}} class="active" {{/if}}>
+                    <a href="/admin/articlecate/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加分类
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li {{if G.url[1] == "article"}} class="active open"{{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-edit"></i>
+                <span class="menu-text"> 内容管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if !G.url[2]}} class="active" {{/if}}>
+                    <a href="/admin/article">
+                        <i class="icon-double-angle-right"></i>
+                        内容列表
+                    </a>
+                </li>
+
+                <li {{if G.url[2] =="add"}} class="active" {{/if}}>
+                    <a href="/admin/article/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加内容
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li {{if G.url[1]=="slider"}} class="active open" {{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-picture"></i>
+                <span class="menu-text"> 轮播图管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if !G.url[2]}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/slider">
+                        <i class="icon-double-angle-right"></i>
+                        轮播图列表
+                    </a>
+                </li>
+
+                <li {{if G.url[2] =="add"}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/slider/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加轮播图
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+
+        <li {{if G.url[1] == "link"}} class="active open" {{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-paperclip"></i>
+
+                <span class="menu-text">
+									友情链接管理
+									<span class="badge badge-primary ">{{G.linkNum}}</span>
+								</span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if G.url[2] =="catelist"}} class="active" {{/if}}>
+                <a href="{{host}}/admin/link/catelist">
+                    <i class="icon-double-angle-right"></i>
+                    链接分类列表
+                </a>
+                </li>
+                <li {{if G.url[2] =="addcate"}} class="active" {{/if}}>
+                <a href="{{host}}/admin/link/addcate">
+                    <i class="icon-double-angle-right"></i>
+                    增加链接分类
+                </a>
+                </li>
+                <li {{if !G.url[2]}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/link">
+                        <i class="icon-double-angle-right"></i>
+                        友情链接列表
+                    </a>
+                </li>
+
+                <li {{if G.url[2] =="add"}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/link/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加友情链接
+                    </a>
+                </li>
+            </ul>
+
+
+        </li>
+
+        <li {{if G.url[1] == "nav"}} class="active open" {{/if}}>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-list-alt"></i>
+
+                <span class="menu-text">
+									导航管理
+									<span class="badge badge-primary ">{{G.navNum}}</span>
+								</span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li {{if !G.url[2]}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/nav">
+                        <i class="icon-double-angle-right"></i>
+                        导航列表
+                    </a>
+                </li>
+                <li {{if G.url[2] == "add"}} class="active" {{/if}}>
+                    <a href="{{host}}/admin/nav/add">
+                        <i class="icon-double-angle-right"></i>
+                        增加导航
+                    </a>
+                </li>
+            </ul>
+
+
+        </li>
+
+
+        <li {{if G.url[1] =="system"}} class="active" {{/if}}>
+            <a href="{{host}}/admin/setting">
+                <i class="icon-cog"></i>
+                <span class="menu-text"> 系统设置 </span>
+            </a>
+        </li>
+
+    </ul><!-- /.nav-list -->
+
+    <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+           data-icon2="icon-double-angle-right"></i>
+    </div>
+
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'collapsed')
+        } catch (e) {
+        }
+    </script>
+</div>

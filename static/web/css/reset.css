@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; font-weight:100;}
+
+body{font:12px/2 "微软雅黑","Arial Narrow",HELVETICA;background:#fff;}
+a{text-decoration:none; color:#fff;}
+a:hover{text-decoration:none;}
+i,em{font-style:normal;}
+b,strong{font-weight:100;}
+ul,ol{list-style:none;}
+img{border:none;}
+input{outline:none;}
+.clear:after{content:'.';display:block;height:0;clear:both;overflow:hidden;visibility:hidden;}

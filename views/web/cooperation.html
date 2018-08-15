@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>战略合作</title>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/heder_nav-menu.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/cooperation.css"/>
+</head>
+
+<body>
+
+{{@ include 'web/public/header.html'}}
+
+<section id="main-wrapper" class="cooperation">
+    <div class="main">
+        <h1 class="title">战略合作</h1>
+        <div class="h1_desc h_desc">
+            与5311家机构进行战略合作
+        </div>
+        <div id="cooperation_btn">
+            <a href="/cooperation?pid=5b7128cb718eb822b4458f0f" class="active">文库商务合作</a>
+            <a href="/cooperation?pid=5b71332aaa79db22b8038683" >百度智慧课堂合作机构</a>
+            <a href="/cooperation?pid=5b713d8dcc672a01782955eb" >阅读入驻出版社</a>
+        </div>
+        <div class="cooperation_container">
+            <ul class="cooperation_container_list clearfix">
+                {{each list}}
+                <li>
+                    <img src="{{host}}/{{$value.img_url}}" alt="">
+                    <span>
+                        {{@ $value.content}}
+                    </span>
+                </li>
+                {{/each}}
+            </ul>
+
+        </div>
+    </div>
+
+
+</section>
+
+
+{{@ include 'web/public/footer.html'}}
+<script src="{{host}}/admin/js/jquery-2.0.3.min.js"></script>
+<script>
+    $(function(){
+        var cooperations = $('#cooperation_btn a');
+        cooperations.each(function(){
+            if($(this).text() == `{{catename}}`){
+                $(this).siblings('a').removeClass('active');
+                $(this).addClass('active');
+            }
+        })
+    })
+</script>
+
+</body>
+</html>

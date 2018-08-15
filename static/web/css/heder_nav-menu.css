@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+#header_nav-wrapper{ height:201px; background:url(../images/header_nav-menu/header_nav_bg.jpg) repeat-x;}
+.header_nav{ height:133px; width:1140px; margin:0 auto; padding-top:68px;}
+.header_nav h2{ font-size:24px; color:#FFF; font-weight:900;}
+.header_nav h2 span{ display:inline-block; height:24px; border-left:1px solid #feb3ae; font-size:18px; color:#ffb4b2; padding-left:15px; line-height:24px;}
+.header_nav h2 p { font-weight:900; font-size:14px; color:#fff;}
+.header_nav  p  span { font-size:14px; color:#ffb3b5;}
+
+#header_title-wrapper{ height:60px; background:#f7f7f7;}
+.header_title{ height:60px; width:1140px; }
+.header_title p{ float:right;}
+.header_title p a{ text-align:center; color:#666865; font-size:12px; line-height:60px;  margin-right:34px; }
+.header_title p a:hover{ color:#F00;}

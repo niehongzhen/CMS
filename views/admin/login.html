@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CMS内容管理系统-登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- basic styles -->
+
+    <link href="{{host}}/admin/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{host}}/admin/css/font-awesome.min.css"/>
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="{{host}}/admin/css/ace.min.css"/>
+    <link rel="stylesheet" href="{{host}}/admin/css/ace-rtl.min.css"/>
+
+    <style type="text/css">
+        .login-layout {
+            background: #428bca;
+        }
+
+        .login-layout .widget-box {
+            background-color: #428bca;
+        }
+
+        .login-layout .widget-box .widget-main {
+            padding: 26px 16px;
+        }
+
+        .login-container {
+            padding-top: 80px;
+        }
+
+        .header {
+            margin-top: 0px;
+            padding-bottom: 12px;
+        }
+
+        #code {
+            cursor: pointer;
+        }
+
+        #validateLogin label.error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body class="login-layout">
+<div class="main-container">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+
+                    <div class="position-relative">
+                        <div id="login-box" class="login-box visible widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+
+                                    <h2 class="header blue lighter bigger center">
+                                        CMS内容管理系统
+
+                                    </h2>
+
+                                    <div class="space-6"></div>
+
+                                    <form id="validateLogin" action="{{host}}/admin/login/dologin" method="post">
+                                        <fieldset>
+                                            <label class="block clearfix" for="username">
+														<span class="block input-icon input-icon-right">
+															<input type="text" id="username" class="form-control"
+                                                                   placeholder="用户名" name="username"/>
+															<i class="icon-user"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix" for="password">
+														<span class="block input-icon input-icon-right">
+															<input type="password" id="password" class="form-control"
+                                                                   placeholder="密码" name="password"/>
+															<i class="icon-lock"></i>
+														</span>
+                                            </label>
+
+                                            <label class="block clearfix" for="code">
+														<span class="block input-icon input-icon-right">
+															<input type="text" id="code" class="form-control"
+                                                                   placeholder="验证码" style="width:200px;float:left;"
+                                                                   name="code"/>
+															<img id="captcha" style="float:right;"
+                                                                 src="{{host}}/admin/login/code" alt="">
+														</span>
+                                            </label>
+
+                                            <div class="space"></div>
+
+                                            <div class="clearfix">
+                                                <label class="inline">
+                                                    <input type="checkbox" class="ace" id="remember"/>
+                                                    <span class="lbl"> Remember Me</span>
+                                                </label>
+
+                                                <button type="submit"
+                                                        class="width-35 pull-right btn btn-sm btn-primary">
+                                                    <i class="icon-key"></i>
+                                                    登录
+                                                </button>
+                                            </div>
+
+                                            <div class="space-4"></div>
+                                        </fieldset>
+                                    </form>
+                                </div><!-- /widget-main -->
+                            </div><!-- /widget-body -->
+                        </div><!-- /login-box -->
+                    </div><!-- /position-relative -->
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div><!-- /.main-container -->
+<!-- basic scripts -->
+
+<script src="{{host}}/admin/js/jquery-validation-1.14.0/jquery-1.8.3.js"></script>
+<script src="{{host}}/admin/js/jquery.cookie.js"></script>
+<script>
+    $(function () {
+        //点击验证码可以刷新
+        $('#captcha').on('click', function () {
+            $(this).attr('src', '{{host}}/admin/login/code?t=' + Math.random() * 100);
+        });
+
+        //记住‘用户名’和'密码'
+        $('#remember').on('change', function () {
+            var str_username = $('#username').val();
+            var str_password = $('#password').val();
+            if ($('#remember').is(':checked')) {
+                if (str_username && str_password) {
+                    $.cookie('remember', 1);
+                    $.cookie('username', str_username);
+                    $.cookie('password', str_password);
+                }
+            } else {
+                $.cookie('remember', 0);
+                $.cookie('username', '');
+                $.cookie('password', '');
+            }
+        });
+
+        //初始化时‘记住我’
+        var remember = Number($.cookie('remember'));
+        var username = $.cookie('username');
+        var password = $.cookie('password');
+
+        $('#remember').attr('checked', Boolean(remember));
+        $('#username').val(username);
+        $('#password').val(password);
+
+    })
+</script>
+</body>
+</html>

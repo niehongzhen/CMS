@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>教育理念</title>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/heder_nav-menu.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/concept.css"/>
+</head>
+
+<body>
+
+{{@ include 'web/public/header.html'}}
+
+<section id="main-wrapper">
+    <div class="main">
+        <h1 class="title">{{titleList.title}}</h1>
+        <div class="h1_desc h_desc">
+            {{@titleList.content}}
+        </div>
+        <div class="container concept_container">
+            {{each conceptList}}
+            <div class="concept_col_item">
+                <div class="overlay"></div>
+                <div class="concept_col_item_bk">
+                    <img src="{{G.host}}/{{$value.img_url}}" alt="">
+                    <div class="concept_col_item_title">
+                        <p>{{$value.title}}</p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="concept_col_item_mask">
+                    <div class="desc">
+                        {{@$value.content}}
+                    </div>
+                    <a href="{{$value.link}}" target="_blank">了解服务详情</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+
+</section>
+
+
+{{@ include 'web/public/footer.html'}}
+
+
+</body>
+</html>

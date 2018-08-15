@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>CMS内容管理系统-内容增加</title>
+
+	<!--引入头部的文件-->
+	{{@ include 'admin/public/headerFile.html'}}
+	<style>
+		#admin_state img{
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+<!--引入头部导航部分-->
+{{@include 'admin/public/nav_top.html'}}
+
+<div class="main-container" id="main-container">
+	<script type="text/javascript">
+		try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	</script>
+
+	<div class="main-container-inner">
+		<a class="menu-toggler" id="menu-toggler" href="#">
+			<span class="menu-text"></span>
+		</a>
+
+		<!--引入左侧边栏-->
+		{{@include 'admin/public/sidebar.html'}}
+
+		<div class="main-content">
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+				</script>
+
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home home-icon"></i>
+						<a href="#">首页</a>
+					</li>
+					<li class="active">控制台</li>
+				</ul><!-- .breadcrumb -->
+			</div>
+
+			<div class="page-content">
+
+				<div class="page-header">
+					<h1>
+						增加内容
+					</h1>
+				</div><!-- /.page-header -->
+
+				<!--表格-->
+
+				<div class="table-responsive">
+					<form action="{{host}}/admin/article/doAdd" method="post" class="form-horizontal" role="form" enctype="multipart/form-data" style="border:1px solid #c5d0dc;">
+                        <ul id="myTab" class="nav nav-tabs" style="height:44px;border:0;">
+                            <li class="active">
+                                <a href="#basic" data-toggle="tab" style="border-top:0;">
+                                    基本设置
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#content" data-toggle="tab" style="border-top:0;">
+                                    内容设置
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#seo" data-toggle="tab" style="border-top:0;">
+                                    SEO设置
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content" style="border:0;">
+                            <div class="tab-pane fade in active" id="basic">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="pid">所属分类：</label>
+
+                                    <div class="col-sm-10">
+                                        <select name="pid" id="pid">
+                                            {{each cateList}}
+                                            <option value="{{@$value._id}}">{{$value.title}}</option>
+                                            {{each $value.list}}
+                                            <option value="{{@$value._id}}">　　{{$value.title}}</option>
+                                            {{/each}}
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="catename" id="catename"  value="{{cateList[0].title}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="title">名称:</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" id="title"  name="title" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="title">封面图:</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="file" id="file"  name="img_url" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="title">作者:</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" id="author"  name="author" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="sort">排序:</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" id="sort"  name="sort" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="link">链接:</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" id="link"  name="link" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">状态：</label>
+                                    <div class="col-sm-10">
+                                        <label for="status1">已审核：</label><input type="radio" name="status"  id="status1" value="1" checked />
+                                        &nbsp;
+                                        <label for="status2">未审核:</label><input type="radio" name="status" id="status2" value="0" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">加入推荐：</label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" value="1" name="is_best" checked=""> 精品
+                                        <input type="checkbox" value="1" name="is_hot" checked=""> 热销
+                                        <input type="checkbox" value="1" name="is_new" checked=""> 新品
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="content" style="min-height:500px;">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="editor">内容详情:</label>
+
+                                    <div class="col-sm-10" style="margin-top: 10px;">
+                                        <script name="content" id="editor" type="text/plain" style="width:700px;height:380px;"></script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="seo">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right" for="keywords">关键字：</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="keywords" name="keywords" class="col-xs-10 col-sm-5" />
+                                    </div>
+                                </div>
+                                <div class="form-group" style="height:100px;">
+                                    <label class="col-sm-2 control-label no-padding-right" for="description">描述：</label>
+                                    <div class="col-sm-10">
+                                        <textarea style="height:100px;" class="col-xs-10 col-sm-5" name="description" id="description" cols="10" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right"></label>
+
+							<div class="col-sm-10" style="margin-top: 10px;">
+								<button type="submit" class="btn btn-primary">提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div><!-- /.main-content -->
+
+	</div><!-- /.main-container-inner -->
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
+</div><!-- /.main-container -->
+<!--引入底部的相关文件-->
+{{@ include 'admin/public/footerFile.html'}}
+
+<script src="{{host}}/admin/js/jquery-validation-1.14.0/jquery.validate.js"></script>
+<script srx="{{host}}/admin/js/jquery-validation-1.14.0/messages_zh.js"></script>
+<!--引入ueditor相关的静态文件-->
+<script src="{{host}}/ueditor/ueditor.config.js"></script>
+<script src="{{host}}/ueditor/ueditor.all.min.js"> </script>
+<script src="{{host}}/ueditor/lang/zh-cn/zh-cn.js"> </script>
+<script>
+    $(function(){
+        // 密码验证规则
+        jQuery.validator.addMethod("isPass", function(value, element) {
+            var pass = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,20}$/;
+            return this.optional(element) || (pass.test(value));
+        }, "*密码为6-20位数字、字母、常用符号");
+
+        //    表单验证
+		$('#validForm').validate({
+            success: function(label) {
+                label.addClass("valid");
+            },
+            onkeyup: false,
+            onfocusout: true,
+            onfocusout: function(element){ $(element).valid(); },
+			focusInvalid: false,
+            focusCleanup: true,
+			rules:{
+			    "username":{
+			        required:true,
+                    minlength:2,
+					remote:{//如果已被注册过则返回false，没有被注册过则返回true
+			            url:'/admin/manage/checkName',
+						type:'GET',
+						cache:false,
+						data:{
+                            username: function() {
+                                return $("#username").val();
+                            }
+						}
+					}
+				},
+				"password":{
+			        required:true,
+					isPass:true//验证规则
+				},
+				"rpassword":{
+			        required:true,
+                    equalTo:'#password'
+				}
+			},
+			messages:{
+			    "username":{
+			        required:'*管理员名称不能为空',
+					minlength:"*用户名最少由两个字母组成",
+					remote:"*该管理员名称已被注册，请重新填写！"
+				},
+				"password":{
+			        required:"*密码不能为空"
+				},
+				"rpassword":{
+			        required:"*确认密码不能为空",
+					equalTo:"*两次密码不一致，请重新填写"
+				}
+			}
+		});
+
+		//实例化ueditor
+        var ue = UE.getEditor('editor');
+
+    //    隐藏的表单域所属分类的值得变化
+        $('#pid').on('change',function(){
+            $('#catename').val($('#pid option:selected').text());
+        })
+
+    })
+</script>
+
+</body>
+</html>
+

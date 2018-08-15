@@ -1,0 +1,21 @@
+.input-icon > [class*="icon-"] {
+  cursor: pointer;
+}
+.form-horizontal .form-group {
+  height: 44px;
+}
+.form-horizontal .form-group label.valid {
+  width: 18px;
+  height: 18px;
+  background-image: url('../images/valid.png');
+  background-repeat: no-repeat;
+  background-color: inherit;
+  border: none;
+  position: absolute;
+  top: 5px;
+  left: 410px;
+}
+.form-horizontal .form-group label.error {
+  color: red;
+}
+/*# sourceMappingURL=basic.css.map */

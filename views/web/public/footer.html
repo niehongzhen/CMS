@@ -1,0 +1,43 @@
+<div id="footer-wrapper">
+    <div class="footer-inner">
+        <div>
+            <h3>{{productLink[0].linkCate}}</h3>
+            <ul class="clearfix">
+                {{each productLink}}
+                <li><a href="{{$value.linkUrl}}">{{$value.linkName}}</a>
+                    {{if $index!= productLink.length-1}}
+                    <span></span>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <h3>{{companyServer[0].linkCate}}</h3>
+            <ul class="clearfix">
+                {{each companyServer}}
+                <li><a href="{{$value.linkUrl}}">{{$value.linkName}}</a>
+                    {{if $index!= companyServer.length-1}}
+                    <span></span>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
+    <div class="footer-inner">
+        <h3>{{connectList[0].catename}}</h3>
+        <div class="connect_code">
+            {{each connectList}}
+            <img src="{{$value.img_url}}" alt="">
+            {{/each}}
+        </div>
+        <h3>合作邮箱</h3>
+        <p>{{site_email}}</p>
+    </div>
+
+</div>
+<div class="footer-icp">
+    <span>{{site_icp}}</span>
+</div>

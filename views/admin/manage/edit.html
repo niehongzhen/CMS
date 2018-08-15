@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>CMS内容管理系统-管理员编辑</title>
+
+	<!--引入头部的文件-->
+	{{@ include 'admin/public/headerFile.html'}}
+</head>
+
+<body>
+<!--引入头部导航部分-->
+{{@include 'admin/public/nav_top.html'}}
+
+<div class="main-container" id="main-container">
+	<script type="text/javascript">
+		try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	</script>
+
+	<div class="main-container-inner">
+		<a class="menu-toggler" id="menu-toggler" href="#">
+			<span class="menu-text"></span>
+		</a>
+
+		<!--引入左侧边栏-->
+		{{@include 'admin/public/sidebar.html'}}
+
+		<div class="main-content">
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+				</script>
+
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home home-icon"></i>
+						<a href="#">首页</a>
+					</li>
+					<li class="active">控制台</li>
+				</ul><!-- .breadcrumb -->
+			</div>
+
+			<div class="page-content">
+
+				<div class="page-header">
+					<h1>
+						编辑管理员
+					</h1>
+				</div><!-- /.page-header -->
+
+				<!--表格-->
+
+				<div class="table-responsive">
+					<form id="validFormEdit" action="{{host}}/admin/manage/doEdit" method="post" class="form-horizontal" role="form">
+						<input type="hidden" id="_id" name="_id" value="{{@list._id}}">
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="username">用户名:</label>
+
+							<div class="col-sm-10">
+								<input type="text" id="username"  name="username" class="col-xs-10 col-sm-5" value="{{list.username}}" readonly/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="password">密 码:</label>
+
+							<div class="col-sm-10">
+								<input type="password" id="password"  name="password" class="col-xs-10 col-sm-5" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="rpassword">确认密码:</label>
+
+							<div class="col-sm-10">
+								<input type="password" id="rpassword"  name="rpassword" class="col-xs-10 col-sm-5" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="rpassword"></label>
+
+							<div class="col-sm-10">
+								<button type="submit" class="btn btn-primary">保存</button>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div><!-- /.main-content -->
+
+	</div><!-- /.main-container-inner -->
+
+	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+		<i class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
+</div><!-- /.main-container -->
+
+<script src="{{host}}/admin/js/jquery-validation-1.14.0/jquery-1.8.3.js"></script>
+<script src="{{host}}/admin/js/jquery-validation-1.14.0/jquery.validate.js"></script>
+<script srx="{{host}}/admin/js/jquery-validation-1.14.0/messages_zh.js"></script>
+<script>
+    $(function(){
+        // 密码验证规则
+        jQuery.validator.addMethod("isPass", function(value, element) {
+            var pass = /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,20}$/;
+            return this.optional(element) || (pass.test(value));
+        }, "*密码为6-20位数字、字母、常用符号");
+
+        //    表单验证
+		$('#validFormEdit').validate({
+            success: function(label) {
+                label.addClass("valid");
+            },
+            onkeyup: false,
+            onfocusout: true,
+            onfocusout: function(element){ $(element).valid(); },
+			focusInvalid: false,
+            focusCleanup: true,
+			rules:{
+				"password":{
+			        required:true,
+					remote:{
+			            url:'/admin/manage/checkPassword',
+						type:'GET',
+						cache:false,
+						data:{
+			                _id:function(){
+			                    return $('#_id').val()
+							},
+			                password:function(){
+			                    return $('#password').val();
+							}
+						}
+					},
+					isPass:true//验证规则
+				},
+				"rpassword":{
+			        required:true,
+                    equalTo:'#password'
+				}
+			},
+			messages:{
+				"password":{
+			        required:"*密码不能为空",
+					remote:"*新密码与原密码一致，请重新填写"
+				},
+				"rpassword":{
+			        required:"*确认密码不能为空",
+					equalTo:"*两次密码不一致，请重新填写"
+				}
+			}
+		})
+    })
+</script>
+
+</body>
+</html>
+

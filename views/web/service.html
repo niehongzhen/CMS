@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>机构服务</title>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/service.css"/>
+    <link rel="stylesheet" type="text/css" href="{{G.host}}/web/css/swiper.min.css"/>
+    <script type="text/javascript" src="{{G.host}}/web/js/swiper.min.js"></script>
+    <style>
+        .swiper-slide a {
+            display: block;
+            width: 100%;
+            height: 540px;
+            position: relative;
+
+        }
+
+        .swiper-slide a img {
+            position: absolute;
+            left: 50%;
+            margin-left: -1280px;
+            width: 2560px;
+            height: 540px;
+
+        }
+    </style>
+
+</head>
+<body>
+<!--引入头部-->
+{{@ include 'web/public/header.html'}}
+
+<section id="main-wrapper">
+    <div class="banner-wrapper">
+        <h1 class="title">机构服务</h1>
+        <div class="swiper-container service-slider">
+            <div class="swiper-wrapper">
+                {{each serviceList}}
+                <div class="swiper-slide">
+                    <input type="hidden" name="pagination_name" value="{{$value.title}}">
+                    <div>
+                        {{@ $value.content}}
+                    </div>
+                    <a href="{{$value.link}}" target="_blank">了解服务详情</a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+<!--引入footer-->
+{{@ include 'web/public/footer.html'}}
+
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+                switch(index){
+                    case 0:text='内容营销';break;
+                    case 1:text='企业服务';break;
+                    case 2:text='技术合作';break;
+                    case 3:text='机构入驻';break;
+                }
+                return '<span class="' + className + '">'+ text +'</span>';
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+
+    })
+</script>
+
+
+</body>
+</html>
