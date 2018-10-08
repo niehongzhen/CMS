@@ -64,6 +64,7 @@ var link = require('./admin/link.js');//友情链接
 var nav = require('./admin/nav.js');//导航
 var setting = require('./admin/setting.js');//系统设置
 var user = require('./admin/user.js');
+var product = require('./admin/product');//商品管理
 
 router.use(index);
 router.use('/login',login);
@@ -75,6 +76,7 @@ router.use('/link',link);
 router.use('/nav',nav);
 router.use('/setting',setting);
 router.use('/user',user);
+router.use('/product',product);
 
 
 

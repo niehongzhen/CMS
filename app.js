@@ -9,10 +9,16 @@ var bodyParser = require('koa-bodyparser');
 var session = require('koa-session');
 var sd = require('silly-datetime');//引入时间格式化的中间件
 var jsonp = require('koa-jsonp');//前台页面进行ajax请求的中间件
+var koa2 = require('koa2-cors');//服务器允许跨域
+
+//引入自定义模块
+var socketIo = require('./model/socket.io');
 
 
 //实例化Koa
 var app = new Koa();
+
+socketIo.init(app);
 
 //配置koa-art-template中间件
 render(app, {
@@ -49,19 +55,25 @@ app.use(session(CONFIG, app));
 //配置koa-jsonp
 app.use(jsonp());
 
+//配置koa2-cors，表示服务器端允许跨域
+app.use(koa2());
+
 
 //引入路由
 var admin = require('./routes/admin.js');
 var index = require('./routes/index.js');
 var api = require('./routes/api.js');
+var kehui = require('./routes/kehui');
 
 router.use(index);
 router.use('/admin', admin);
 router.use('/api', api);
+router.use('/kehui',kehui);
 
 app
     .use(router.routes())//启动路由
     .use(router.allowedMethods());//设置response响应头，可以不写，但是推荐写上
+
 
 app.listen(8001);
 

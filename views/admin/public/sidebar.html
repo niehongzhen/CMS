@@ -123,6 +123,36 @@
             </ul>
         </li>
 
+        <li {{if G.url[1] == "product"}} class="active open"{{/if}}>
+        <a href="#" class="dropdown-toggle">
+            <i class="icon-edit"></i>
+            <span class="menu-text"> 商品管理 </span>
+
+            <b class="arrow icon-angle-down"></b>
+        </a>
+
+        <ul class="submenu">
+            <li {{if !G.url[2]}} class="active" {{/if}}>
+            <a href="/admin/product">
+                <i class="icon-double-angle-right"></i>
+                商品列表
+            </a>
+            </li>
+            <li {{if G.url[2] =="productcate"}} class="active" {{/if}}>
+            <a href="/admin/product/productcate">
+                <i class="icon-double-angle-right"></i>
+                商品分类列表
+            </a>
+            </li>
+            <li {{if G.url[2] =="order"}} class="active" {{/if}}>
+            <a href="/admin/product/order">
+                <i class="icon-double-angle-right"></i>
+                订单管理
+            </a>
+            </li>
+        </ul>
+        </li>
+
 
         <li {{if G.url[1]=="slider"}} class="active open" {{/if}}>
             <a href="#" class="dropdown-toggle">

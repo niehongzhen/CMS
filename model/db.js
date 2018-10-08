@@ -114,6 +114,22 @@ class Db{
             })
         })
     }
+
+    //删除多条数据
+    deleteMany(collectionName,data){
+        return new Promise((resolve,reject)=>{
+            this.connect().then((db)=>{
+                db.collection(collectionName).deleteMany(data,(error,docs)=>{
+                    if(error){
+                        reject(error);
+                        return;
+                    }
+                    resolve(docs);
+                })
+            })
+        })
+    }
+
     getObjectId(_id){
         return new ObjectId(_id);
     }
