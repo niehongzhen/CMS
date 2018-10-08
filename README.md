@@ -11,6 +11,11 @@ MCS（内容管理系统），是一个后台管理系统，由NodeJs + koa2 +Mo
 6）打开命令行，输入，mongod --dbpath D:\mongodb(这里加入在D盘下建立的mongodb文件夹)，连接本地数据库；
 7）执行mongorestore -h 127.0.0.1 -d koa + 项目目录下的koa文件夹所在路径（例如：D:\CMS\koa）,将项目中的数据导入到本地Mongodb数据库中；
 8）进入到项目目录下打开命令行，输入node app.js，运行项目；
-9)在浏览器中输入http://localhost:8001，进入到前台页面（“模拟百度教育”）;
-10)在浏览器中输入http://localhost:8001/admin,进入到CMS后台系统页面，账号为admin,密码为123456。
+9)在浏览器中输入http://localhost:8001, 进入到前台页面（“模拟百度教育”）;
+10)在浏览器中输入http://localhost:8001/admin, 进入到CMS后台系统页面，账号为admin,密码为123456。
+
+项目线上地址：
+模拟百度教育：http://39.105.63.62:8001
+CMS管理系统：http://39.105.63.62:8001/admin 账号：admin 密码：123456
+
 
